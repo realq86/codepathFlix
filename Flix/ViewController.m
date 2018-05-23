@@ -27,13 +27,15 @@
 
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+
+#pragma mark #2 Code snippet for : https://guides.codepath.com/ios/Table-View-Guide#adding-pull-to-refresh
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
-    
     [self.tableView insertSubview:refreshControl atIndex:0];
-    
+#pragma mark #2 END
+
+#pragma mark #3 Code snippet for: https://hackmd.io/2QgY35XMQFmgvGc3BbDrxQ?both
+    // and : https://guides.codepath.com/ios/Table-View-Guide#adding-pull-to-refresh
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
@@ -55,18 +57,19 @@
             
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data
                                                                            options:NSJSONReadingMutableContainers
-                                                                             error:nil];
+                                                                             error:&error];
             
-            NSLog(@"%@", dataDictionary);
-            self.dataBackArray = dataDictionary[@"results"];
-            [self.tableView reloadData];
+            if (error != nil) {
+                NSLog(@"%@", dataDictionary);
+                self.dataBackArray = dataDictionary[@"results"];
+                [self.tableView reloadData];
+            }
         }
         
     }];
-
     
     [task resume];
-
+#pragma mark #3 END
 }
 
 
