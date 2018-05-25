@@ -36,45 +36,32 @@ NSString *const apiURL = @"https://api.themoviedb.org/3/movie/now_playing?api_ke
     
     return provider;
 }
+
+#pragma mark #4 Code snippet for: https://github.com/codepath/ios_guides/wiki/Network-Programming
+
 - (void)getNowPlaying:(void(^)(NSDictionary *))completion {
-    
-    NSURL *url = [NSURL URLWithString:apiURL];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url
-                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                         timeoutInterval:10.0];
 
-    NSURLSessionDataTask *task = [self.urlSession dataTaskWithRequest:request
-                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                    
-            if (error != nil) {
-                NSLog(@"%@", [error localizedDescription]);
-            }
-            else {
-                
-                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                               options:NSJSONReadingMutableContainers
-                                                                                 error:nil];
-                
-                completion(dataDictionary);
-                
-                NSLog(@"%@", dataDictionary);
-            }
-                                                    
-    }];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    [task resume];
-
+    NSURL *URL = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request
+                                                   uploadProgress:nil
+                                                 downloadProgress:nil
+                                                completionHandler:^(NSURLResponse *response, id  responseObject, NSError *error) {
+                                                        if (error) {
+                                                            NSLog(@"Error: %@", error);
+                                                        } else {
+                                                            NSLog(@"%@ %@", response, responseObject);
+                                                            NSDictionary *dataDictionary = responseObject;
+                                                            completion(dataDictionary);
+                                                        }
+                                                }];
+    [dataTask resume];
 }
-
-//- (instancetype)init {
-//
-//    if (self = [super init] ) {
-//
-//    }
-//
-//
-//}
+#pragma mark #4 END
 
 
 

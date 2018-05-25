@@ -10,7 +10,6 @@
 #import "MovieDBProvider.h"
 #import "MovieCell.h"
 
-
 @interface ViewController ()
 
 
@@ -36,40 +35,49 @@
 
 #pragma mark #3 Code snippet for: https://hackmd.io/2QgY35XMQFmgvGc3BbDrxQ?both
     // and : https://guides.codepath.com/ios/Table-View-Guide#adding-pull-to-refresh
-    NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url
-                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                         timeoutInterval:10.0];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
-                                                          delegate:nil
-                                                     delegateQueue:[NSOperationQueue mainQueue]];
-    session.configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+//    NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url
+//                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+//                                         timeoutInterval:10.0];
+//    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+//                                                          delegate:nil
+//                                                     delegateQueue:[NSOperationQueue mainQueue]];
+//    session.configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+//
+//    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+//                                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//
+//        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+//
+//        if (error != nil) {
+//            NSLog(@"%@", [error localizedDescription]);
+//        }
+//        else if (httpResponse.statusCode == 200 && data != nil){
+//
+//            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data
+//                                                                           options:NSJSONReadingMutableContainers
+//                                                                             error:&error];
+//
+//            if (error != nil) {
+//                NSLog(@"%@", dataDictionary);
+//                self.dataBackArray = dataDictionary[@"results"];
+//                [self.tableView reloadData];
+//            }
+//        }
+//
+//    }];
+//
+//    [task resume];
+#pragma mark #3 END
     
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                      
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-            
-        if (error != nil) {
-            NSLog(@"%@", [error localizedDescription]);
-        }
-        else if (httpResponse.statusCode == 200 && data != nil){
-            
-            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                           options:NSJSONReadingMutableContainers
-                                                                             error:&error];
-            
-            if (error != nil) {
-                NSLog(@"%@", dataDictionary);
-                self.dataBackArray = dataDictionary[@"results"];
-                [self.tableView reloadData];
-            }
-        }
-        
+    
+    //Using singleton to call instead of the snippet above
+    MovieDBProvider *provider = MovieDBProvider.shared;
+    [provider getNowPlaying:^(NSDictionary *response) {
+        self.dataBackArray = response[@"results"];
+        [self.tableView reloadData];
     }];
     
-    [task resume];
-#pragma mark #3 END
 }
 
 
@@ -79,8 +87,39 @@
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
+        NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url
+                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                             timeoutInterval:10.0];
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                              delegate:nil
+                                                         delegateQueue:[NSOperationQueue mainQueue]];
+        session.configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
     
-    NSLog(@"~~~~~~~~~~~~~~~~~~~~~~~beginRefresh");
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+    
+            if (error != nil) {
+                NSLog(@"%@", [error localizedDescription]);
+            }
+            else if (httpResponse.statusCode == 200 && data != nil){
+    
+                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                               options:NSJSONReadingMutableContainers
+                                                                                 error:&error];
+    
+                if (error != nil) {
+                    NSLog(@"%@", dataDictionary);
+                    self.dataBackArray = dataDictionary[@"results"];
+                    [self.tableView reloadData];
+                }
+            }
+    
+        }];
+    
+        [task resume];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
