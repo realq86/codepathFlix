@@ -17,6 +17,8 @@
 
 @property (strong, nonatomic) NSArray *dataBackArray;
 
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @end
 
 @implementation ViewController
@@ -70,12 +72,54 @@
 //    [task resume];
 #pragma mark #3 END
     
+    [self.activityIndicator startAnimating];
     
     //Using singleton to call instead of the snippet above
     MovieDBProvider *provider = MovieDBProvider.shared;
-    [provider getNowPlaying:^(NSDictionary *response) {
-        self.dataBackArray = response[@"results"];
-        [self.tableView reloadData];
+    [provider getNowPlaying:^(NSDictionary *response, NSError *error) {
+        
+        if (error) {
+            
+#pragma mark #4 Code snippet for: https://github.com/codepath/ios_guides/wiki/Using-UIAlertController
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Title"
+                                                                           message:@"Message"
+                                                                    preferredStyle:(UIAlertControllerStyleAlert)];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                                style:UIAlertActionStyleCancel
+                                                              handler:^(UIAlertAction * _Nonnull action) {
+                                                                  
+                                                              }];
+            
+            [alert addAction:cancelAction];
+            
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 
+                                                             }];
+            
+            [alert addAction:okAction];
+            
+            [self presentViewController:alert animated:YES completion:^{
+
+            }];
+            
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert
+                                                                                         animated:YES
+                                                                                       completion:^{
+                
+                                                                                       }];
+#pragma mark #4 END
+            
+        }
+        else {
+            self.dataBackArray = response[@"results"];
+            [self.tableView reloadData];
+        }
+
+        
+        [self.activityIndicator stopAnimating];
     }];
     
 }
@@ -87,39 +131,42 @@
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
-        NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url
-                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                             timeoutInterval:10.0];
-        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
-                                                              delegate:nil
-                                                         delegateQueue:[NSOperationQueue mainQueue]];
-        session.configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
     
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-    
-            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-    
+    NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                         timeoutInterval:10.0];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                          delegate:nil
+                                                     delegateQueue:[NSOperationQueue mainQueue]];
+    session.configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        [refreshControl endRefreshing];
+                                                
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        else if (httpResponse.statusCode == 200 && data != nil){
+
+            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                           options:NSJSONReadingMutableContainers
+                                                                             error:&error];
+
             if (error != nil) {
-                NSLog(@"%@", [error localizedDescription]);
+                NSLog(@"%@", dataDictionary);
+                self.dataBackArray = dataDictionary[@"results"];
+                [self.tableView reloadData];
             }
-            else if (httpResponse.statusCode == 200 && data != nil){
-    
-                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                               options:NSJSONReadingMutableContainers
-                                                                                 error:&error];
-    
-                if (error != nil) {
-                    NSLog(@"%@", dataDictionary);
-                    self.dataBackArray = dataDictionary[@"results"];
-                    [self.tableView reloadData];
-                }
-            }
-    
-        }];
-    
-        [task resume];
+        }
+
+    }];
+
+    [task resume];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

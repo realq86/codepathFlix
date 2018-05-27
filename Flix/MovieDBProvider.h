@@ -14,6 +14,5 @@
 
 + (instancetype)shared;
 
-- (void)getNowPlaying:(void(^)(NSDictionary *))completion;
-
+- (void)getNowPlaying:(void(^)(NSDictionary *, NSError *error))completion;
 @end

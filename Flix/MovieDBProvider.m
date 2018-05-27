@@ -39,7 +39,7 @@ NSString *const apiURL = @"https://api.themoviedb.org/3/movie/now_playing?api_ke
 
 #pragma mark #4 Code snippet for: https://github.com/codepath/ios_guides/wiki/Network-Programming
 
-- (void)getNowPlaying:(void(^)(NSDictionary *))completion {
+- (void)getNowPlaying:(void(^)(NSDictionary *, NSError *error))completion {
 
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -53,10 +53,13 @@ NSString *const apiURL = @"https://api.themoviedb.org/3/movie/now_playing?api_ke
                                                 completionHandler:^(NSURLResponse *response, id  responseObject, NSError *error) {
                                                         if (error) {
                                                             NSLog(@"Error: %@", error);
+                                                            
+                                                            completion(nil, error);
+                                                            
                                                         } else {
                                                             NSLog(@"%@ %@", response, responseObject);
                                                             NSDictionary *dataDictionary = responseObject;
-                                                            completion(dataDictionary);
+                                                            completion(dataDictionary, nil);
                                                         }
                                                 }];
     [dataTask resume];
