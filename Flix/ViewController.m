@@ -14,8 +14,11 @@
 
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @property (strong, nonatomic) NSArray *dataBackArray;
+@property (strong, nonatomic) NSArray *filteredDataBackArray;
+
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
@@ -28,6 +31,8 @@
 
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    self.searchBar.delegate = self;
 
 #pragma mark #2 Code snippet for : https://guides.codepath.com/ios/Table-View-Guide#adding-pull-to-refresh
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -36,92 +41,93 @@
 #pragma mark #2 END
 
 #pragma mark #3 Code snippet for: https://hackmd.io/2QgY35XMQFmgvGc3BbDrxQ?both
-    // and : https://guides.codepath.com/ios/Table-View-Guide#adding-pull-to-refresh
-//    NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url
-//                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-//                                         timeoutInterval:10.0];
-//    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
-//                                                          delegate:nil
-//                                                     delegateQueue:[NSOperationQueue mainQueue]];
-//    session.configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+//     and : https://guides.codepath.com/ios/Table-View-Guide#adding-pull-to-refresh
+    NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                         timeoutInterval:10.0];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                          delegate:nil
+                                                     delegateQueue:[NSOperationQueue mainQueue]];
+    session.configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        else if (httpResponse.statusCode == 200 && data != nil){
+
+            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                           options:NSJSONReadingMutableContainers
+                                                                             error:&error];
+
+            if (error == nil) {
+                NSLog(@"%@", dataDictionary);
+                self.dataBackArray = dataDictionary[@"results"];
+                self.filteredDataBackArray = self.dataBackArray;
+                [self.tableView reloadData];
+            }
+        }
+
+    }];
+
+    [task resume];
+//#pragma mark #3 END
 //
-//    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-//                                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//    [self.activityIndicator startAnimating];
 //
-//        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+//    //Using singleton to call instead of the snippet above
+//    MovieDBProvider *provider = MovieDBProvider.shared;
+//    [provider getNowPlaying:^(NSDictionary *response, NSError *error) {
 //
-//        if (error != nil) {
-//            NSLog(@"%@", [error localizedDescription]);
+//        if (error) {
+//
+//#pragma mark #4 Code snippet for: https://github.com/codepath/ios_guides/wiki/Using-UIAlertController
+//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Title"
+//                                                                           message:@"Message"
+//                                                                    preferredStyle:(UIAlertControllerStyleAlert)];
+//
+//            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+//                                                                style:UIAlertActionStyleCancel
+//                                                              handler:^(UIAlertAction * _Nonnull action) {
+//
+//                                                              }];
+//
+//            [alert addAction:cancelAction];
+//
+//            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+//                                                               style:UIAlertActionStyleDefault
+//                                                             handler:^(UIAlertAction * _Nonnull action) {
+//
+//                                                             }];
+//
+//            [alert addAction:okAction];
+//
+//            [self presentViewController:alert animated:YES completion:^{
+//
+//            }];
+//
+//            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert
+//                                                                                         animated:YES
+//                                                                                       completion:^{
+//
+//                                                                                       }];
+//#pragma mark #4 END
+//
 //        }
-//        else if (httpResponse.statusCode == 200 && data != nil){
-//
-//            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data
-//                                                                           options:NSJSONReadingMutableContainers
-//                                                                             error:&error];
-//
-//            if (error != nil) {
-//                NSLog(@"%@", dataDictionary);
-//                self.dataBackArray = dataDictionary[@"results"];
-//                [self.tableView reloadData];
-//            }
+//        else {
+//            self.dataBackArray = response[@"results"];
+//            [self.tableView reloadData];
 //        }
 //
+//
+//        [self.activityIndicator stopAnimating];
 //    }];
 //
-//    [task resume];
-#pragma mark #3 END
-    
-    [self.activityIndicator startAnimating];
-    
-    //Using singleton to call instead of the snippet above
-    MovieDBProvider *provider = MovieDBProvider.shared;
-    [provider getNowPlaying:^(NSDictionary *response, NSError *error) {
-        
-        if (error) {
-            
-#pragma mark #4 Code snippet for: https://github.com/codepath/ios_guides/wiki/Using-UIAlertController
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Title"
-                                                                           message:@"Message"
-                                                                    preferredStyle:(UIAlertControllerStyleAlert)];
-            
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                                style:UIAlertActionStyleCancel
-                                                              handler:^(UIAlertAction * _Nonnull action) {
-                                                                  
-                                                              }];
-            
-            [alert addAction:cancelAction];
-            
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-                                                                 
-                                                             }];
-            
-            [alert addAction:okAction];
-            
-            [self presentViewController:alert animated:YES completion:^{
-
-            }];
-            
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert
-                                                                                         animated:YES
-                                                                                       completion:^{
-                
-                                                                                       }];
-#pragma mark #4 END
-            
-        }
-        else {
-            self.dataBackArray = response[@"results"];
-            [self.tableView reloadData];
-        }
-
-        
-        [self.activityIndicator stopAnimating];
-    }];
-    
 }
 
 
@@ -157,9 +163,10 @@
                                                                            options:NSJSONReadingMutableContainers
                                                                              error:&error];
 
-            if (error != nil) {
+            if (error == nil) {
                 NSLog(@"%@", dataDictionary);
                 self.dataBackArray = dataDictionary[@"results"];
+                self.filteredDataBackArray = self.dataBackArray;
                 [self.tableView reloadData];
             }
         }
@@ -172,7 +179,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     
-    return self.dataBackArray.count;
+    return self.filteredDataBackArray.count;
 }
 
 
@@ -181,7 +188,7 @@
     MovieCell *movieCell = [self.tableView dequeueReusableCellWithIdentifier:@"MovieCell"
                                                            forIndexPath:indexPath];
     
-    NSDictionary *movie = self.dataBackArray[indexPath.row];
+    NSDictionary *movie = self.filteredDataBackArray[indexPath.row];
     
     movieCell.movieTitle.text = (NSString *)movie[@"title"];
     

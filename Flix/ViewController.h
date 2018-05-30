@@ -10,7 +10,7 @@
 
 #import "AFNetworking.h"
 
-@interface ViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 
 @end

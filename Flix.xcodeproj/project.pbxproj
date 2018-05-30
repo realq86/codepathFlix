@@ -10,6 +10,8 @@
 		43BB4CC13FAC626EB02CC2A6 /* libPods-Flix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 874F12046BF2460A5294D4B0 /* libPods-Flix.a */; };
 		8714EA0DB0505ADDA9C31289 /* libPods-FlixTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9C637D487B35E664FC6E077 /* libPods-FlixTests.a */; };
 		8B2989F020B501E3003704CD /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2989EF20B501E2003704CD /* MovieCell.m */; };
+		8B9A901220BE452D001645BD /* SearchBarTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9A901120BE452D001645BD /* SearchBarTableViewViewController.m */; };
+		8B9A901520BE6132001645BD /* UISearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9A901420BE6132001645BD /* UISearchViewController.m */; };
 		8BFB623A20B20D570068F0B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB623920B20D570068F0B4 /* AppDelegate.m */; };
 		8BFB623D20B20D570068F0B4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB623C20B20D570068F0B4 /* ViewController.m */; };
 		8BFB624020B20D570068F0B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB623E20B20D570068F0B4 /* Main.storyboard */; };
@@ -50,6 +52,10 @@
 		874F12046BF2460A5294D4B0 /* libPods-Flix.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Flix.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B2989EE20B501E2003704CD /* MovieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
 		8B2989EF20B501E2003704CD /* MovieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
+		8B9A901020BE452D001645BD /* SearchBarTableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBarTableViewViewController.h; sourceTree = "<group>"; };
+		8B9A901120BE452D001645BD /* SearchBarTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBarTableViewViewController.m; sourceTree = "<group>"; };
+		8B9A901320BE6132001645BD /* UISearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISearchViewController.h; sourceTree = "<group>"; };
+		8B9A901420BE6132001645BD /* UISearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISearchViewController.m; sourceTree = "<group>"; };
 		8BFB623520B20D570068F0B4 /* Flix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BFB623820B20D570068F0B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8BFB623920B20D570068F0B4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -152,6 +158,10 @@
 				8BFB623820B20D570068F0B4 /* AppDelegate.h */,
 				8BFB623920B20D570068F0B4 /* AppDelegate.m */,
 				8BFB623B20B20D570068F0B4 /* ViewController.h */,
+				8B9A901320BE6132001645BD /* UISearchViewController.h */,
+				8B9A901420BE6132001645BD /* UISearchViewController.m */,
+				8B9A901020BE452D001645BD /* SearchBarTableViewViewController.h */,
+				8B9A901120BE452D001645BD /* SearchBarTableViewViewController.m */,
 				8BFB623C20B20D570068F0B4 /* ViewController.m */,
 				8BFB623E20B20D570068F0B4 /* Main.storyboard */,
 				8BFB624420B20D580068F0B4 /* Assets.xcassets */,
@@ -380,6 +390,8 @@
 				8B2989F020B501E3003704CD /* MovieCell.m in Sources */,
 				8BFB624B20B20D580068F0B4 /* main.m in Sources */,
 				8BFB626F20B254660068F0B4 /* MovieDBProvider.m in Sources */,
+				8B9A901220BE452D001645BD /* SearchBarTableViewViewController.m in Sources */,
+				8B9A901520BE6132001645BD /* UISearchViewController.m in Sources */,
 				8BFB623A20B20D570068F0B4 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
