@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UISearchController *searchController;
+@property (strong, nonatomic) UISearchController *searchControllerNavi;
 @property (strong, nonatomic) NSArray *data;
 @property (strong, nonatomic) NSArray *filteredData;
 
@@ -49,6 +50,17 @@
     
     // Sets this view controller as presenting view controller for the search interface
     self.definesPresentationContext = YES;
+    
+    self.searchControllerNavi = [[UISearchController alloc] initWithSearchResultsController:nil];
+    
+    [self.searchControllerNavi.searchBar sizeToFit];
+    self.navigationItem.titleView = self.searchControllerNavi.searchBar;
+    
+    // By default the navigation bar hides when presenting the
+    // search interface.  Obviously we don't want this to happen if
+    // our search bar is inside the navigation bar.
+    self.searchControllerNavi.hidesNavigationBarDuringPresentation = NO;
+    
 }
 
 
