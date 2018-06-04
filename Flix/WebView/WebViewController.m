@@ -14,9 +14,25 @@
 
 @implementation WebViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    #pragma mark #2 Code snippet for : https://github.com/codepath/ios_guides/wiki/Using-WebKit-View/
+    
+    NSString *urlString = @"https://www.dropbox.com/terms?mobile=1";
+    
+    // Convert the url String to a NSURL object.
+    NSURL *url = [NSURL URLWithString:urlString];
+
+    // Place the URL in a URL Request.
+    NSURLRequest *request = [NSURLRequest requestWithURL:url
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                         timeoutInterval:10.0];
+    
+    // Load Request into WebView.
+    [self.webkitView loadRequest:request];
+#pragma mark #2 END
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,7 +43,7 @@
     
 #pragma mark #1 Code snippet for : https://guides.codepath.com/ios/Using-Modal-Transitions
     [self dismissViewControllerAnimated:YES completion:nil];
-#pragma mark END #1
+#pragma mark #1 END
 }
 
 /*

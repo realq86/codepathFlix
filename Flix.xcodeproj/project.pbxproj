@@ -13,6 +13,8 @@
 		8B51CA6820C0E3050043C06A /* NaviBarSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B51CA6720C0E3050043C06A /* NaviBarSearchController.m */; };
 		8B7F1CCA20C4B57B00402655 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F1CC920C4B57B00402655 /* WebViewController.m */; };
 		8B7F1CCD20C4B5FE00402655 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F1CCC20C4B5FE00402655 /* DetailViewController.m */; };
+		8B7F1CD320C4F09F00402655 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7F1CD120C4EAEB00402655 /* WebKit.framework */; };
+		8B7F1CD720C4F97600402655 /* WebViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F1CD620C4F97600402655 /* WebViewControllerSwift.swift */; };
 		8B9A901220BE452D001645BD /* SearchBarTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9A901120BE452D001645BD /* SearchBarTableViewViewController.m */; };
 		8B9A901520BE6132001645BD /* UISearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9A901420BE6132001645BD /* UISearchViewController.m */; };
 		8BFB623A20B20D570068F0B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB623920B20D570068F0B4 /* AppDelegate.m */; };
@@ -61,6 +63,9 @@
 		8B7F1CC920C4B57B00402655 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		8B7F1CCB20C4B5FE00402655 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		8B7F1CCC20C4B5FE00402655 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		8B7F1CD120C4EAEB00402655 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		8B7F1CD520C4F97600402655 /* Flix-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flix-Bridging-Header.h"; sourceTree = "<group>"; };
+		8B7F1CD620C4F97600402655 /* WebViewControllerSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewControllerSwift.swift; sourceTree = "<group>"; };
 		8B9A901020BE452D001645BD /* SearchBarTableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBarTableViewViewController.h; sourceTree = "<group>"; };
 		8B9A901120BE452D001645BD /* SearchBarTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBarTableViewViewController.m; sourceTree = "<group>"; };
 		8B9A901320BE6132001645BD /* UISearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISearchViewController.h; sourceTree = "<group>"; };
@@ -93,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B7F1CD320C4F09F00402655 /* WebKit.framework in Frameworks */,
 				43BB4CC13FAC626EB02CC2A6 /* libPods-Flix.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,6 +138,7 @@
 		7D86754B0A9F4098B4381AFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B7F1CD120C4EAEB00402655 /* WebKit.framework */,
 				874F12046BF2460A5294D4B0 /* libPods-Flix.a */,
 				F9C637D487B35E664FC6E077 /* libPods-FlixTests.a */,
 				B98D5D8D0F1C2FAE94CCD644 /* libPods-FlixUITests.a */,
@@ -172,6 +179,17 @@
 			path = AllMovieViewController;
 			sourceTree = "<group>";
 		};
+		8B7F1CD420C4F95700402655 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				8B7F1CC820C4B57B00402655 /* WebViewController.h */,
+				8B7F1CC920C4B57B00402655 /* WebViewController.m */,
+				8B7F1CD620C4F97600402655 /* WebViewControllerSwift.swift */,
+				8B7F1CD520C4F97600402655 /* Flix-Bridging-Header.h */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 		8BFB622C20B20D570068F0B4 = {
 			isa = PBXGroup;
 			children = (
@@ -208,8 +226,7 @@
 				8BFB624A20B20D580068F0B4 /* main.m */,
 				8BFB624120B20D570068F0B4 /* Flix.xcdatamodeld */,
 				8B7F1CCF20C4B62B00402655 /* ServiceModel */,
-				8B7F1CC820C4B57B00402655 /* WebViewController.h */,
-				8B7F1CC920C4B57B00402655 /* WebViewController.m */,
+				8B7F1CD420C4F95700402655 /* WebView */,
 				8B7F1CCB20C4B5FE00402655 /* DetailViewController.h */,
 				8B7F1CCC20C4B5FE00402655 /* DetailViewController.m */,
 			);
@@ -304,6 +321,7 @@
 				TargetAttributes = {
 					8BFB623420B20D570068F0B4 = {
 						CreatedOnToolsVersion = 9.3.1;
+						LastSwiftMigration = 0940;
 					};
 					8BFB624F20B20D580068F0B4 = {
 						CreatedOnToolsVersion = 9.3.1;
@@ -429,6 +447,7 @@
 				8BFB623D20B20D570068F0B4 /* ViewController.m in Sources */,
 				8B2989F020B501E3003704CD /* MovieCell.m in Sources */,
 				8BFB624B20B20D580068F0B4 /* main.m in Sources */,
+				8B7F1CD720C4F97600402655 /* WebViewControllerSwift.swift in Sources */,
 				8BFB626F20B254660068F0B4 /* MovieDBProvider.m in Sources */,
 				8B9A901220BE452D001645BD /* SearchBarTableViewViewController.m in Sources */,
 				8B7F1CCD20C4B5FE00402655 /* DetailViewController.m in Sources */,
@@ -604,6 +623,7 @@
 			baseConfigurationReference = 1A20D903B641D6DBD1943DCD /* Pods-Flix.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SDHBMW8ZGY;
 				INFOPLIST_FILE = Flix/Info.plist;
@@ -613,6 +633,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.Flix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flix/WebView/Flix-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -622,6 +645,7 @@
 			baseConfigurationReference = 0A8811BE6A7EDADEA855A992 /* Pods-Flix.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SDHBMW8ZGY;
 				INFOPLIST_FILE = Flix/Info.plist;
@@ -631,6 +655,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.Flix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flix/WebView/Flix-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -639,6 +665,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6AA5E2E231710FDD32B5B71C /* Pods-FlixTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SDHBMW8ZGY;
@@ -659,6 +686,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 31770BE3680A739B1E3FC3FB /* Pods-FlixTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SDHBMW8ZGY;
@@ -679,6 +707,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 507C60EEF4071329B009780A /* Pods-FlixUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SDHBMW8ZGY;
 				INFOPLIST_FILE = FlixUITests/Info.plist;
@@ -698,6 +727,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F99C5DA365376D9C43430AC /* Pods-FlixUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SDHBMW8ZGY;
 				INFOPLIST_FILE = FlixUITests/Info.plist;

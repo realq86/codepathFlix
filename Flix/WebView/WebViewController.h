@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WKWebView.h>
 
 @interface WebViewController : UIViewController
+
+@property (strong, nonatomic) IBOutlet WKWebView *webkitView;
 
 @end
