@@ -11,6 +11,8 @@
 		8714EA0DB0505ADDA9C31289 /* libPods-FlixTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9C637D487B35E664FC6E077 /* libPods-FlixTests.a */; };
 		8B2989F020B501E3003704CD /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2989EF20B501E2003704CD /* MovieCell.m */; };
 		8B51CA6820C0E3050043C06A /* NaviBarSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B51CA6720C0E3050043C06A /* NaviBarSearchController.m */; };
+		8B7F1CCA20C4B57B00402655 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F1CC920C4B57B00402655 /* WebViewController.m */; };
+		8B7F1CCD20C4B5FE00402655 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F1CCC20C4B5FE00402655 /* DetailViewController.m */; };
 		8B9A901220BE452D001645BD /* SearchBarTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9A901120BE452D001645BD /* SearchBarTableViewViewController.m */; };
 		8B9A901520BE6132001645BD /* UISearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9A901420BE6132001645BD /* UISearchViewController.m */; };
 		8BFB623A20B20D570068F0B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB623920B20D570068F0B4 /* AppDelegate.m */; };
@@ -55,6 +57,10 @@
 		8B2989EF20B501E2003704CD /* MovieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
 		8B51CA6620C0E3050043C06A /* NaviBarSearchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaviBarSearchController.h; sourceTree = "<group>"; };
 		8B51CA6720C0E3050043C06A /* NaviBarSearchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NaviBarSearchController.m; sourceTree = "<group>"; };
+		8B7F1CC820C4B57B00402655 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		8B7F1CC920C4B57B00402655 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		8B7F1CCB20C4B5FE00402655 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		8B7F1CCC20C4B5FE00402655 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		8B9A901020BE452D001645BD /* SearchBarTableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBarTableViewViewController.h; sourceTree = "<group>"; };
 		8B9A901120BE452D001645BD /* SearchBarTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBarTableViewViewController.m; sourceTree = "<group>"; };
 		8B9A901320BE6132001645BD /* UISearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISearchViewController.h; sourceTree = "<group>"; };
@@ -133,6 +139,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8B7F1CCE20C4B60B00402655 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				8B51CA6620C0E3050043C06A /* NaviBarSearchController.h */,
+				8B51CA6720C0E3050043C06A /* NaviBarSearchController.m */,
+				8B9A901320BE6132001645BD /* UISearchViewController.h */,
+				8B9A901420BE6132001645BD /* UISearchViewController.m */,
+				8B9A901020BE452D001645BD /* SearchBarTableViewViewController.h */,
+				8B9A901120BE452D001645BD /* SearchBarTableViewViewController.m */,
+			);
+			path = SearchBar;
+			sourceTree = "<group>";
+		};
+		8B7F1CCF20C4B62B00402655 /* ServiceModel */ = {
+			isa = PBXGroup;
+			children = (
+				8BFB626D20B254660068F0B4 /* MovieDBProvider.h */,
+				8BFB626E20B254660068F0B4 /* MovieDBProvider.m */,
+			);
+			path = ServiceModel;
+			sourceTree = "<group>";
+		};
+		8B7F1CD020C4B6F500402655 /* AllMovieViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8BFB623B20B20D570068F0B4 /* ViewController.h */,
+				8BFB623C20B20D570068F0B4 /* ViewController.m */,
+				8B2989EE20B501E2003704CD /* MovieCell.h */,
+				8B2989EF20B501E2003704CD /* MovieCell.m */,
+			);
+			path = AllMovieViewController;
+			sourceTree = "<group>";
+		};
 		8BFB622C20B20D570068F0B4 = {
 			isa = PBXGroup;
 			children = (
@@ -160,24 +199,19 @@
 			children = (
 				8BFB623820B20D570068F0B4 /* AppDelegate.h */,
 				8BFB623920B20D570068F0B4 /* AppDelegate.m */,
-				8B51CA6620C0E3050043C06A /* NaviBarSearchController.h */,
-				8B51CA6720C0E3050043C06A /* NaviBarSearchController.m */,
-				8B9A901320BE6132001645BD /* UISearchViewController.h */,
-				8B9A901420BE6132001645BD /* UISearchViewController.m */,
-				8B9A901020BE452D001645BD /* SearchBarTableViewViewController.h */,
-				8B9A901120BE452D001645BD /* SearchBarTableViewViewController.m */,
-				8BFB623B20B20D570068F0B4 /* ViewController.h */,
-				8BFB623C20B20D570068F0B4 /* ViewController.m */,
+				8B7F1CCE20C4B60B00402655 /* SearchBar */,
+				8B7F1CD020C4B6F500402655 /* AllMovieViewController */,
 				8BFB623E20B20D570068F0B4 /* Main.storyboard */,
 				8BFB624420B20D580068F0B4 /* Assets.xcassets */,
 				8BFB624620B20D580068F0B4 /* LaunchScreen.storyboard */,
 				8BFB624920B20D580068F0B4 /* Info.plist */,
 				8BFB624A20B20D580068F0B4 /* main.m */,
 				8BFB624120B20D570068F0B4 /* Flix.xcdatamodeld */,
-				8BFB626D20B254660068F0B4 /* MovieDBProvider.h */,
-				8BFB626E20B254660068F0B4 /* MovieDBProvider.m */,
-				8B2989EE20B501E2003704CD /* MovieCell.h */,
-				8B2989EF20B501E2003704CD /* MovieCell.m */,
+				8B7F1CCF20C4B62B00402655 /* ServiceModel */,
+				8B7F1CC820C4B57B00402655 /* WebViewController.h */,
+				8B7F1CC920C4B57B00402655 /* WebViewController.m */,
+				8B7F1CCB20C4B5FE00402655 /* DetailViewController.h */,
+				8B7F1CCC20C4B5FE00402655 /* DetailViewController.m */,
 			);
 			path = Flix;
 			sourceTree = "<group>";
@@ -391,11 +425,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BFB624320B20D570068F0B4 /* Flix.xcdatamodeld in Sources */,
+				8B7F1CCA20C4B57B00402655 /* WebViewController.m in Sources */,
 				8BFB623D20B20D570068F0B4 /* ViewController.m in Sources */,
 				8B2989F020B501E3003704CD /* MovieCell.m in Sources */,
 				8BFB624B20B20D580068F0B4 /* main.m in Sources */,
 				8BFB626F20B254660068F0B4 /* MovieDBProvider.m in Sources */,
 				8B9A901220BE452D001645BD /* SearchBarTableViewViewController.m in Sources */,
+				8B7F1CCD20C4B5FE00402655 /* DetailViewController.m in Sources */,
 				8B9A901520BE6132001645BD /* UISearchViewController.m in Sources */,
 				8B51CA6820C0E3050043C06A /* NaviBarSearchController.m in Sources */,
 				8BFB623A20B20D570068F0B4 /* AppDelegate.m in Sources */,

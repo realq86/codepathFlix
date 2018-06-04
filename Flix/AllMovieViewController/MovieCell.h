@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *movieTitle;
 @property (strong, nonatomic) IBOutlet UILabel *movieDescription;
 
+@property (strong, nonatomic) NSDictionary *movie;
 
 @end

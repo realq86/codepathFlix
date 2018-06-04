@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "MovieDBProvider.h"
 #import "MovieCell.h"
+#import "DetailViewController.h"
 
 @interface ViewController ()
 
@@ -76,7 +77,7 @@
     }];
 
     [task resume];
-//#pragma mark #3 END
+#pragma mark #3 END
 //
 //    [self.activityIndicator startAnimating];
 //
@@ -86,7 +87,7 @@
 //
 //        if (error) {
 //
-//#pragma mark #4 Code snippet for: https://github.com/codepath/ios_guides/wiki/Using-UIAlertController
+#pragma mark #4 Code snippet for: https://github.com/codepath/ios_guides/wiki/Using-UIAlertController
 //            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Title"
 //                                                                           message:@"Message"
 //                                                                    preferredStyle:(UIAlertControllerStyleAlert)];
@@ -116,7 +117,7 @@
 //                                                                                       completion:^{
 //
 //                                                                                       }];
-//#pragma mark #4 END
+#pragma mark #4 END
 //
 //        }
 //        else {
@@ -190,6 +191,8 @@
     
     NSDictionary *movie = self.filteredDataBackArray[indexPath.row];
     
+    movieCell.movie = movie;
+    
     movieCell.movieTitle.text = (NSString *)movie[@"title"];
     
     movieCell.movieDescription.text = (NSString *)movie[@"overview"];
@@ -197,5 +200,18 @@
     return movieCell;
 }
 
+#pragma mark #1 Code snippet for : https://guides.codepath.com/ios/Using-Modal-Transitions
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    MovieCell *cell = (MovieCell *)sender;
+    
+    NSDictionary *movie = cell.movie;
+    
+    DetailViewController *detailVC = segue.destinationViewController;
+    
+    detailVC.movie = movie;
+}
+
+#pragma mark #1 END
 
 @end
