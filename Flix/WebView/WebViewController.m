@@ -33,18 +33,36 @@
     // Load Request into WebView.
     [self.webkitView loadRequest:request];
 #pragma mark #2 END
+    
+
+#pragma mark #4 Code snippet for : https://guides.codepath.com/ios/Using-Gesture-Recognizers
+    // Here we use the method didPan(sender:), which we defined in the previous step, as the action.
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
+    
+    // Optionally set the number of required taps, e.g., 2 for a double click
+    tapGestureRecognizer.numberOfTapsRequired = 2;
+    
+    // Attach it to a view of your choice. If it's a UIImageView, remember to enable user interaction
+    [self.view setUserInteractionEnabled:YES];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+#pragma mark #4 END
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)tapDismiss:(UITapGestureRecognizer *)sender {
+
+#pragma mark #3 Code snippet for : https://guides.codepath.com/ios/Using-Gesture-Recognizers
+- (IBAction)didTap:(UITapGestureRecognizer *)sender {
+    
+    CGPoint location = [sender locationInView:self.view];
     
 #pragma mark #1 Code snippet for : https://guides.codepath.com/ios/Using-Modal-Transitions
     [self dismissViewControllerAnimated:YES completion:nil];
 #pragma mark #1 END
 }
+#pragma mark #3 END
 
 /*
 #pragma mark - Navigation
