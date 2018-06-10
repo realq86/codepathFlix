@@ -74,6 +74,53 @@
                                    }];
     
 #pragma mark #3 END
+    
+    
+    
+#pragma mark #4 Code snippet for : https://github.com/codepath/ios_guides/wiki/Navigation-Controller
+
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+//                                                                              style:UIBarButtonItemStylePlain
+//                                                                             target:self action:@selector(saveButtonTapped:)];
+//    UILabel *titleLabel = [UILabel new];
+//
+//    NSShadow *shadow = [NSShadow new];
+//    shadow.shadowColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
+//    shadow.shadowOffset = CGSizeMake(2, 2);
+//    shadow.shadowBlurRadius = 4;
+//
+//    NSAttributedString *titleText = [[NSAttributedString alloc] initWithString:@"Edit Name"
+//                                                                    attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:28],
+//                                                                                 NSForegroundColorAttributeName : [UIColor colorWithRed:0.5 green:0.25 blue:0.15 alpha:0.8],
+//                                                                                 NSShadowAttributeName : shadow}];
+//
+//    titleLabel.attributedText = titleText;
+//    [titleLabel sizeToFit];
+//    self.navigationItem.titleView = titleLabel;
+
+    
+//    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+//                                                                              style:UIBarButtonItemStylePlain
+//                                                                             target:self action:@selector(saveButtonTapped:)];
+//    
+//    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Foo", @"Bar"]];
+//    [segmentedControl sizeToFit];
+//    UIBarButtonItem *segmentedButton = [[UIBarButtonItem alloc] initWithCustomView:segmentedControl];
+//    
+//    UIBarButtonItem *dummyButton = [[UIBarButtonItem alloc] initWithTitle:@"Dummy" style:UIBarButtonItemStylePlain target:nil action:nil];
+//    
+//    self.navigationItem.rightBarButtonItems = @[saveButton, segmentedButton];
+//    self.navigationItem.leftBarButtonItem = dummyButton;
+    
+    
+    
+    
+#pragma mark #4 END
+
+}
+
+- (void)saveButtonTapped:(id)sender {
+    NSLog(@"SaveButtonTapped:");
 }
 
 

@@ -266,12 +266,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Flix/DetailViewController.m"
-            timestampString = "549860271.534324"
+            timestampString = "550288379.0837491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-saveButtonTapped:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

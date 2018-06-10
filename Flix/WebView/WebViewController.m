@@ -46,6 +46,10 @@
     [self.view setUserInteractionEnabled:YES];
     [self.view addGestureRecognizer:tapGestureRecognizer];
 #pragma mark #4 END
+    
+    
+    self.navigationItem.title = @"Names";
+
 }
 
 - (void)didReceiveMemoryWarning {

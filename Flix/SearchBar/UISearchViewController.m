@@ -61,6 +61,8 @@
     // our search bar is inside the navigation bar.
     self.searchControllerNavi.hidesNavigationBarDuringPresentation = NO;
     
+    
+    
 }
 
 
