@@ -10,6 +10,7 @@
 #import "MovieDBProvider.h"
 #import "MovieCell.h"
 #import "DetailViewController.h"
+#import "UIKit+AFNetworking.h"
 
 @interface ViewController ()
 
@@ -213,11 +214,23 @@
     
     NSDictionary *movie = self.filteredDataBackArray[indexPath.row];
     
-    movieCell.movie = movie;
+//    movieCell.movie = movie;
     
     movieCell.movieTitle.text = (NSString *)movie[@"title"];
     
     movieCell.movieDescription.text = (NSString *)movie[@"overview"];
+    
+    if ([movie[@"poster_path"] isKindOfClass:[NSString class]]) {
+        NSString *posterPath = movie[@"poster_path"];
+        NSString *posterBaseUrl = @"https://image.tmdb.org/t/p/w500";
+        NSString *posterFullPath = [posterBaseUrl stringByAppendingString:posterPath];
+        NSURL *posterURL = [NSURL URLWithString:posterFullPath];
+        [movieCell.movieImage setImageWithURL:posterURL];
+    }
+    else {
+        movieCell.movieImage.image = nil;
+    }
+    
     
     return movieCell;
 }

@@ -25,7 +25,8 @@
 
 - (void)setMovie:(NSDictionary *)movie {
     _movie = movie;
-
+        
+#pragma mark #1 Code snippet for : https://guides.codepath.com/ios/Working-with-UIImageView#loading-a-low-resolution-image-followed-by-a-high-resolution-image
     NSString *urlString = [NSString stringWithFormat:@"https://image.tmdb.org/t/p/w500/%@", self.movie[@"poster_path"]];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -53,6 +54,8 @@
                                     failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
                                         // do something for the failure condition
                                     }];
+    
+#pragma mark #1 END
 }
 
 @end
